@@ -68,6 +68,12 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                             'label' => __('Включить доставку ЖДЭ', 'woocommerce'),
                             'default' => 'no'
                         ),
+                        'apiurl' => array(
+                            'title' => 'API URL',
+                            'type' => 'text',
+                            'description' => 'Адрес API ждэ',
+                            'default' => 'http://apitest.jde.ru:8000'
+                        ),
                         'from' => array(
                             'title' => 'Откуда',
                             'type' => 'text',
@@ -163,7 +169,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                     );
 
                     // get prices
-                    $url = 'http://jde.api/calculator/price?' . http_build_query($params);
+                    $url = $this->settings['apiurl'] . '/calculator/price?' . http_build_query($params);
 
                     $data = file_get_contents($url);
                     $json = json_decode($data);
