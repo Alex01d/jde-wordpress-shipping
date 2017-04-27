@@ -105,7 +105,7 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
                  * @param mixed $package
                  * @return void
                  */
-                public function calculate_shipping($package)
+                public function calculate_shipping($package=array())
                 {
 
                     global $woocommerce;
@@ -134,9 +134,9 @@ if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_
 
                         $product = $values['data'];
 
-                        $height = floatval($product->height);
-                        $length = floatval($product->length);
-                        $width = floatval($product->width);
+                        $height = floatval($product->get_height);
+                        $length = floatval($product->get_length);
+                        $width = floatval($product->get_width);
 
                         $quantity = intval($cart[$itemId]['quantity']);
 
